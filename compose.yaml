@@ -1,0 +1,61 @@
+services:
+  mongodb-actor:
+    container_name: 'mongodb-actor'
+    networks:
+      - shared-net
+    image: 'mongo:latest'
+    environment:
+      - 'MONGO_INITDB_DATABASE=actor-db'
+      - 'MONGO_INITDB_ROOT_PASSWORD=secret'
+      - 'MONGO_INITDB_ROOT_USERNAME=root'
+    command: mongod --port 27017
+    ports:
+      - '27017:27017'
+  mongodb-movie:
+    container_name: 'mongodb-movie'
+    networks:
+      - shared-net
+    image: 'mongo:latest'
+    environment:
+      - 'MONGO_INITDB_DATABASE=movie-db'
+      - 'MONGO_INITDB_ROOT_PASSWORD=secret'
+      - 'MONGO_INITDB_ROOT_USERNAME=root'
+    command: mongod --port 27016
+    ports:
+      - '27016:27016'
+  movie-service:
+    build:
+#      context: docker-movie-service
+      dockerfile: movie.Dockerfile
+    image: 'movie-service:latest'
+    container_name: movie-service
+    environment:
+      - SPRING_PROFILES_ACTIVE=docker
+    depends_on:
+      - mongodb-movie
+    links:
+      - mongodb-movie
+    networks:
+      - shared-net
+    ports:
+      - "8082:8082"
+  actor-service:
+    build:
+#      context: docker-actor-service
+      dockerfile: actor.Dockerfile
+    image: 'actor-service:latest'
+    container_name: actor-service
+    environment:
+      - SPRING_PROFILES_ACTIVE=docker
+    depends_on:
+      - mongodb-actor
+    links:
+      - mongodb-actor
+    networks:
+      - shared-net
+    ports:
+      - "8081:8081"
+
+networks:
+  shared-net:
+    driver: bridge
