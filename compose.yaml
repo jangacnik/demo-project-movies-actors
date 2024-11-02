@@ -25,7 +25,6 @@ services:
       - '27016:27016'
   movie-service:
     build:
-      context: docker-movie-service
       dockerfile: movie.Dockerfile
     image: 'movie-service:latest'
     container_name: movie-service
@@ -41,7 +40,6 @@ services:
       - "8082:8082"
   actor-service:
     build:
-      context: docker-actor-service
       dockerfile: actor.Dockerfile
     image: 'actor-service:latest'
     container_name: actor-service
