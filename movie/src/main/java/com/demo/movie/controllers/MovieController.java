@@ -70,7 +70,7 @@ public class MovieController {
   }
 
   @GetMapping
-  public Mono<Page<MovieShortDto>>  findAllByPage(
+  public Mono<Page<MovieShortDto>> findAllByPage(
       @RequestParam(defaultValue = "0") int page,
       @RequestParam(defaultValue = "10") int pageSize,
       @RequestParam(defaultValue = "ID") SortField sortField,

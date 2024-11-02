@@ -30,6 +30,7 @@ public class MovieService {
   private final MovieRepository movieRepository;
   private final MovieMapper movieMapper;
   private final ActorClient actorClient;
+
   public void insertMovie(MovieDto actor) {
     movieRepository.insert(convertToMovie(actor, null));
   }
@@ -60,8 +61,7 @@ public class MovieService {
   }
 
   public MovieListDto findByTitle(String title) throws NotFoundException {
-    Optional<List<Movie>> movieList =
-        movieRepository.findAllByTitleContainingOrderByTitle(title);
+    Optional<List<Movie>> movieList = movieRepository.findAllByTitleContainingOrderByTitle(title);
     if (movieList.isEmpty()) {
       throw new NotFoundException();
     }
@@ -80,8 +80,8 @@ public class MovieService {
     if (optionalMovieList.isEmpty()) {
       throw new NotFoundException();
     }
-    return Flux.fromIterable(optionalMovieList.get().stream().map(movieMapper::toMovieShortDto).
-        toList());
+    return Flux.fromIterable(
+        optionalMovieList.get().stream().map(movieMapper::toMovieShortDto).toList());
   }
 
   public MovieFullDto findMovieFull(String id) {
@@ -99,6 +99,13 @@ public class MovieService {
   }
 
   private Movie convertToMovie(MovieDto movieDto, @Nullable String id) {
-    return new Movie(movieDto.title(), movieDto.year(), movieDto.description(), movieDto.actorIds() ,movieDto.coverImage(), movieDto.images(),id);
+    return new Movie(
+        movieDto.title(),
+        movieDto.year(),
+        movieDto.description(),
+        movieDto.actorIds(),
+        movieDto.coverImage(),
+        movieDto.images(),
+        id);
   }
 }

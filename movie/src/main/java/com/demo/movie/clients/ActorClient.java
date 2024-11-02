@@ -12,9 +12,9 @@ import reactor.core.publisher.Flux;
 
 @Component
 public class ActorClient {
+  private final WebClient client;
   @Value("${client-actor-endpoint}")
   private String url;
-  private final WebClient client;
 
   ActorClient() {
     client = WebClient.create(url);

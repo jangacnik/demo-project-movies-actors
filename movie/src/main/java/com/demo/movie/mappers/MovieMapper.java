@@ -16,6 +16,7 @@ public interface MovieMapper {
   @Mapping(source = "year", target = "year")
   @Mapping(source = "description", target = "description")
   MovieShortDto toMovieShortDto(Movie movie);
+
   @Mapping(source = "actorShortList", target = "actorShortList")
   @Mapping(source = "movie", target = "movie")
   MovieFullDto toMovieFullDto(Movie movie, List<ActorShort> actorShortList);
