@@ -1,12 +1,16 @@
 package com.demo.movie.services;
 
+import com.demo.movie.clients.ActorClient;
 import com.demo.movie.dto.MovieDto;
+import com.demo.movie.dto.MovieFullDto;
 import com.demo.movie.dto.MovieListDto;
 import com.demo.movie.dto.MovieShortDto;
 import com.demo.movie.mappers.MovieMapper;
+import com.demo.movie.models.ActorShort;
 import com.demo.movie.models.Movie;
 import com.demo.movie.models.enums.SortField;
 import com.demo.movie.repositories.MovieRepository;
+import java.util.ArrayList;
 import java.util.List;
 import java.util.Optional;
 import lombok.RequiredArgsConstructor;
@@ -18,12 +22,14 @@ import org.springframework.data.domain.Sort.Direction;
 import org.springframework.lang.Nullable;
 import org.springframework.stereotype.Service;
 import reactor.core.publisher.Flux;
+import reactor.core.publisher.Mono;
 
 @Service
 @RequiredArgsConstructor
 public class MovieService {
   private final MovieRepository movieRepository;
   private final MovieMapper movieMapper;
+  private final ActorClient actorClient;
   public void insertMovie(MovieDto actor) {
     movieRepository.insert(convertToMovie(actor, null));
   }
@@ -76,6 +82,16 @@ public class MovieService {
     }
     return Flux.fromIterable(optionalMovieList.get().stream().map(movieMapper::toMovieShortDto).
         toList());
+  }
+
+  public MovieFullDto findMovieFull(String id) {
+    Movie movie = movieRepository.findById(id).orElseThrow();
+    List<ActorShort> actorShortList = new ArrayList<>();
+    Flux<ActorShort> movieShortFlux = actorClient.findActorsShort(movie.getActorIds());
+    Mono<Void> m = Mono.when(movieShortFlux);
+    movieShortFlux.collectList().subscribe(actorShortList::addAll);
+    m.block();
+    return movieMapper.toMovieFullDto(movie, actorShortList);
   }
 
   private Optional<Movie> findById(String id) {

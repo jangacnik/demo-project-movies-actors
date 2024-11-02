@@ -1,4 +1,6 @@
 package com.demo.movie.models;
 
 
-public record ActorShort(String title, String year, String description) {}
+import java.time.LocalDate;
+
+public record ActorShort(String firstName, String lastName, LocalDate birthdate) {}

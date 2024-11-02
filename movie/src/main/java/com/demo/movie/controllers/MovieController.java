@@ -1,6 +1,7 @@
 package com.demo.movie.controllers;
 
 import com.demo.movie.dto.MovieDto;
+import com.demo.movie.dto.MovieFullDto;
 import com.demo.movie.dto.MovieListDto;
 import com.demo.movie.dto.MovieShortDto;
 import com.demo.movie.models.Movie;
@@ -75,5 +76,10 @@ public class MovieController {
       @RequestParam(defaultValue = "ID") SortField sortField,
       @RequestParam(defaultValue = "DESC") Direction sortDirection) {
     return Mono.just(movieService.findByPage(page, pageSize, sortDirection, sortField));
+  }
+
+  @GetMapping("/{id}/full")
+  public ResponseEntity<MovieFullDto> getActorFull(@PathVariable String id) {
+    return ResponseEntity.ok(movieService.findMovieFull(id));
   }
 }

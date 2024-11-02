@@ -13,14 +13,16 @@ import org.springframework.web.reactive.function.client.WebClient;
 import reactor.core.publisher.Flux;
 
 @Log4j2
-@RequiredArgsConstructor
 @Component
 public class MovieClient {
 
   @Value("${client-movie-endpoint}")
   private String url;
-  private final WebClient client = WebClient.create(url);
+  private WebClient client;
 
+  MovieClient() {
+    client = WebClient.create(url);
+  }
   public Flux<MovieShort> findMoviesShort(List<String> ids) {
     return client
             .post()
