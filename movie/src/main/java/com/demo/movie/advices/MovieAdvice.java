@@ -15,23 +15,23 @@ import org.springframework.web.servlet.mvc.method.annotation.ResponseEntityExcep
 public class MovieAdvice extends ResponseEntityExceptionHandler {
 
   @ExceptionHandler(value = {NotFoundException.class})
-  protected ResponseEntity<Object> handleNotFoundException(RuntimeException ex,
-      WebRequest webRequest) {
-    return handleExceptionInternal(ex, ex.getMessage(), new HttpHeaders(), HttpStatus.NOT_FOUND,
-        webRequest);
+  protected ResponseEntity<Object> handleNotFoundException(
+      RuntimeException ex, WebRequest webRequest) {
+    return handleExceptionInternal(
+        ex, ex.getMessage(), new HttpHeaders(), HttpStatus.NOT_FOUND, webRequest);
   }
 
   @ExceptionHandler(value = {MongoQueryException.class})
-  protected ResponseEntity<Object> handleMongoQueryException(RuntimeException ex,
-      WebRequest webRequest) {
-    return handleExceptionInternal(ex, ex.getMessage(), new HttpHeaders(), HttpStatus.INTERNAL_SERVER_ERROR,
-        webRequest);
+  protected ResponseEntity<Object> handleMongoQueryException(
+      RuntimeException ex, WebRequest webRequest) {
+    return handleExceptionInternal(
+        ex, ex.getMessage(), new HttpHeaders(), HttpStatus.INTERNAL_SERVER_ERROR, webRequest);
   }
 
   @ExceptionHandler(value = {MongoWriteException.class})
-  protected ResponseEntity<Object> handleMongoWriteException(RuntimeException ex,
-      WebRequest webRequest) {
-    return handleExceptionInternal(ex, ex.getMessage(), new HttpHeaders(), HttpStatus.INTERNAL_SERVER_ERROR,
-        webRequest);
+  protected ResponseEntity<Object> handleMongoWriteException(
+      RuntimeException ex, WebRequest webRequest) {
+    return handleExceptionInternal(
+        ex, ex.getMessage(), new HttpHeaders(), HttpStatus.INTERNAL_SERVER_ERROR, webRequest);
   }
 }
