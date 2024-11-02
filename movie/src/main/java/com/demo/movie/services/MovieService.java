@@ -5,11 +5,16 @@ import com.demo.movie.dto.MovieListDto;
 import com.demo.movie.dto.MovieShortDto;
 import com.demo.movie.mappers.MovieMapper;
 import com.demo.movie.models.Movie;
+import com.demo.movie.models.enums.SortField;
 import com.demo.movie.repositories.MovieRepository;
 import java.util.List;
 import java.util.Optional;
 import lombok.RequiredArgsConstructor;
 import org.springframework.data.crossstore.ChangeSetPersister.NotFoundException;
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.PageRequest;
+import org.springframework.data.domain.Pageable;
+import org.springframework.data.domain.Sort.Direction;
 import org.springframework.lang.Nullable;
 import org.springframework.stereotype.Service;
 import reactor.core.publisher.Flux;
@@ -55,6 +60,13 @@ public class MovieService {
       throw new NotFoundException();
     }
     return new MovieListDto(movieList.get(), movieList.get().size());
+  }
+
+  public Page<MovieShortDto> findByPage(
+      int pageNumber, int pageSize, Direction sortDirection, SortField sortField) {
+    Pageable pageable =
+        PageRequest.of(pageNumber, pageSize, sortDirection, sortField.getDatabaseFieldName());
+    return movieRepository.findAll(pageable).map(movieMapper::toMovieShortDto);
   }
 
   public Flux<MovieShortDto> findByListOfIds(List<String> ids) throws NotFoundException {

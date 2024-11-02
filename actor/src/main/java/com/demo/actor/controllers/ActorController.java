@@ -74,15 +74,6 @@ public class ActorController {
     return Mono.just(actorService.findByPage(page, pageSize, sortDirection, sortField));
   }
 
-  @GetMapping("/full")
-  public Mono<Page<ActorFullDto>>  findAllByPageFull(
-      @RequestParam(defaultValue = "0") int page,
-      @RequestParam(defaultValue = "10") int pageSize,
-      @RequestParam(defaultValue = "ID") SortField sortField,
-      @RequestParam(defaultValue = "DESC") Direction sortDirection) {
-    return Mono.just(null);
-  }
-
   @PostMapping("/list")
   public Flux<ActorShortDto> findAllByIds(@RequestBody ActorListRequst ids)
       throws NotFoundException {

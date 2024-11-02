@@ -4,12 +4,15 @@ import com.demo.movie.dto.MovieDto;
 import com.demo.movie.dto.MovieListDto;
 import com.demo.movie.dto.MovieShortDto;
 import com.demo.movie.models.Movie;
+import com.demo.movie.models.enums.SortField;
 import com.demo.movie.models.request.MovieListRequest;
 import com.demo.movie.services.MovieService;
 import lombok.NonNull;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.log4j.Log4j2;
 import org.springframework.data.crossstore.ChangeSetPersister.NotFoundException;
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.Sort.Direction;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -18,6 +21,7 @@ import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.PutMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 import reactor.core.publisher.Flux;
 import reactor.core.publisher.Mono;
@@ -61,7 +65,15 @@ public class MovieController {
   @PostMapping("/list")
   public Flux<MovieShortDto> findAllByIds(@RequestBody MovieListRequest ids)
       throws NotFoundException {
-    log.error("Test");
     return movieService.findByListOfIds(ids.movieIds());
+  }
+
+  @GetMapping
+  public Mono<Page<MovieShortDto>>  findAllByPage(
+      @RequestParam(defaultValue = "0") int page,
+      @RequestParam(defaultValue = "10") int pageSize,
+      @RequestParam(defaultValue = "ID") SortField sortField,
+      @RequestParam(defaultValue = "DESC") Direction sortDirection) {
+    return Mono.just(movieService.findByPage(page, pageSize, sortDirection, sortField));
   }
 }
