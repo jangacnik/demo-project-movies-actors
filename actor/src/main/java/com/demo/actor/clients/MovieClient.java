@@ -17,7 +17,7 @@ import reactor.core.publisher.Flux;
 @Component
 public class MovieClient {
 
-  @Value("${client-actor-endpoint}")
+  @Value("${client-movie-endpoint}")
   private String url;
   private final WebClient client = WebClient.create(url);
 
