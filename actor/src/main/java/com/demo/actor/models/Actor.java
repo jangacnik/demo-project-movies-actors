@@ -12,13 +12,9 @@ import org.springframework.data.mongodb.core.mapping.Document;
 @AllArgsConstructor
 @Document("actors")
 public class Actor {
-  @NonNull
-  private final String firstName;
-  @NonNull
-  private final String lastName;
-  @NonNull
-  private final LocalDate birthdate;
+  @NonNull private final String firstName;
+  @NonNull private final String lastName;
+  @NonNull private final LocalDate birthdate;
   private final List<String> movieIds;
-  @Id
-  private String id;
+  @Id private String id;
 }

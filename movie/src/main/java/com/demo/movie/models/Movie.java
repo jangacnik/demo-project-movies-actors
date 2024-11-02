@@ -8,8 +8,8 @@ import org.springframework.data.annotation.Id;
 import org.springframework.data.mongodb.core.mapping.Document;
 
 @Data
-@Document("movies")
 @AllArgsConstructor
+@Document("movies")
 public class Movie {
   @NonNull private final String title;
   @NonNull private final String year;
