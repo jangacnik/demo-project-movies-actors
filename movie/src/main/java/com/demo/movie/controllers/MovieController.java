@@ -2,7 +2,9 @@ package com.demo.movie.controllers;
 
 import com.demo.movie.dto.MovieDto;
 import com.demo.movie.dto.MovieListDto;
+import com.demo.movie.dto.MovieShortDto;
 import com.demo.movie.models.Movie;
+import com.demo.movie.models.request.MovieListRequest;
 import com.demo.movie.services.MovieService;
 import lombok.NonNull;
 import lombok.RequiredArgsConstructor;
@@ -17,6 +19,8 @@ import org.springframework.web.bind.annotation.PutMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
+import reactor.core.publisher.Flux;
+import reactor.core.publisher.Mono;
 
 @RestController
 @RequestMapping("/movie")
@@ -33,14 +37,13 @@ public class MovieController {
   }
 
   @GetMapping("/{id}")
-  public ResponseEntity<Movie> getById(@PathVariable String id) throws NotFoundException {
-    return ResponseEntity.ok(movieService.getById(id));
+  public Mono<Movie> getById(@PathVariable String id) throws NotFoundException {
+    return Mono.just(movieService.getById(id));
   }
 
   @GetMapping("/find/{title}")
-  public ResponseEntity<MovieListDto> getByTitle(@PathVariable String title)
-      throws NotFoundException {
-    return ResponseEntity.ok(movieService.findByTitle(title));
+  public Mono<MovieListDto> getByTitle(@PathVariable String title) throws NotFoundException {
+    return Mono.just(movieService.findByTitle(title));
   }
 
   @DeleteMapping("/{id}")
@@ -50,8 +53,15 @@ public class MovieController {
   }
 
   @PutMapping("/{id}")
-  public ResponseEntity<Movie> update(@RequestBody MovieDto actorDto, @PathVariable String id)
+  public Mono<Movie> update(@RequestBody MovieDto actorDto, @PathVariable String id)
       throws NotFoundException {
-    return ResponseEntity.ok(movieService.updateMovie(actorDto, id));
+    return Mono.just(movieService.updateMovie(actorDto, id));
+  }
+
+  @PostMapping("/list")
+  public Flux<MovieShortDto> findAllByIds(@RequestBody MovieListRequest ids)
+      throws NotFoundException {
+    log.error("Test");
+    return movieService.findByListOfIds(ids.movieIds());
   }
 }

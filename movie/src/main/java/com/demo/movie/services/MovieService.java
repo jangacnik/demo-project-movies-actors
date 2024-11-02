@@ -2,6 +2,8 @@ package com.demo.movie.services;
 
 import com.demo.movie.dto.MovieDto;
 import com.demo.movie.dto.MovieListDto;
+import com.demo.movie.dto.MovieShortDto;
+import com.demo.movie.mappers.MovieMapper;
 import com.demo.movie.models.Movie;
 import com.demo.movie.repositories.MovieRepository;
 import java.util.List;
@@ -10,11 +12,13 @@ import lombok.RequiredArgsConstructor;
 import org.springframework.data.crossstore.ChangeSetPersister.NotFoundException;
 import org.springframework.lang.Nullable;
 import org.springframework.stereotype.Service;
+import reactor.core.publisher.Flux;
 
 @Service
 @RequiredArgsConstructor
 public class MovieService {
   private final MovieRepository movieRepository;
+  private final MovieMapper movieMapper;
   public void insertMovie(MovieDto actor) {
     movieRepository.insert(convertToMovie(actor, null));
   }
@@ -51,6 +55,15 @@ public class MovieService {
       throw new NotFoundException();
     }
     return new MovieListDto(movieList.get(), movieList.get().size());
+  }
+
+  public Flux<MovieShortDto> findByListOfIds(List<String> ids) throws NotFoundException {
+    Optional<List<Movie>> optionalMovieList = movieRepository.findByIdIn(ids);
+    if (optionalMovieList.isEmpty()) {
+      throw new NotFoundException();
+    }
+    return Flux.fromIterable(optionalMovieList.get().stream().map(movieMapper::toMovieShortDto).
+        toList());
   }
 
   private Optional<Movie> findById(String id) {

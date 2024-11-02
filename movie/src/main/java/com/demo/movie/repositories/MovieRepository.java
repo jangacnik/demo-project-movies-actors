@@ -7,4 +7,6 @@ import org.springframework.data.mongodb.repository.MongoRepository;
 
 public interface MovieRepository extends MongoRepository<Movie, String> {
   Optional<List<Movie>> findAllByTitleContainingOrderByTitle(String title);
+
+  Optional<List<Movie>> findByIdIn(List<String> movieIds);
 }
