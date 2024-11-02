@@ -1,6 +1,5 @@
 package com.demo.actor.controllers;
 
-import com.demo.actor.clients.MovieClient;
 import com.demo.actor.dto.ActorDto;
 import com.demo.actor.dto.ActorFullDto;
 import com.demo.actor.dto.ActorListDto;
@@ -34,7 +33,6 @@ import reactor.core.publisher.Mono;
 @Log4j2
 public class ActorController {
   private final ActorService actorService;
-  private final MovieClient client;
 
   @PostMapping()
   public ResponseEntity<Void> save(@RequestBody @NonNull ActorDto actor) {
@@ -43,8 +41,8 @@ public class ActorController {
   }
 
   @GetMapping("/{id}")
-  public Mono<Actor> getById(@PathVariable String id) throws NotFoundException {
-    return Mono.just(actorService.getActorById(id));
+  public ResponseEntity<Actor> getById(@PathVariable String id) throws NotFoundException {
+    return ResponseEntity.ok(actorService.getActorById(id));
   }
 
   @GetMapping("/names")
@@ -66,12 +64,12 @@ public class ActorController {
   }
 
   @GetMapping
-  public Mono<Page<ActorShortDto>>  findAllByPage(
+  public ResponseEntity<Page<ActorShortDto>>  findAllByPage(
       @RequestParam(defaultValue = "0") int page,
       @RequestParam(defaultValue = "10") int pageSize,
       @RequestParam(defaultValue = "ID") SortField sortField,
       @RequestParam(defaultValue = "DESC") Direction sortDirection) {
-    return Mono.just(actorService.findByPage(page, pageSize, sortDirection, sortField));
+    return ResponseEntity.ok(actorService.findByPage(page, pageSize, sortDirection, sortField));
   }
 
   @PostMapping("/list")

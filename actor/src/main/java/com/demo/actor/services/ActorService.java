@@ -42,14 +42,6 @@ public class ActorService {
     actorRepository.insert(convertToActor(actor, null));
   }
 
-  /**
-   * Update Actor by given ID with the given {@link ActorDto}
-   *
-   * @param actorDto
-   * @param id
-   * @return
-   * @throws NotFoundException
-   */
   public Actor updateActor(ActorDto actorDto, String id) throws NotFoundException {
     Actor actor = convertToActor(actorDto, id);
     Optional<Actor> actorOptional = findById(actor.getId());
@@ -68,7 +60,7 @@ public class ActorService {
   }
 
   public Actor getActorById(String id) throws NotFoundException {
-    Optional<Actor> actorOptional = findById(id);
+    Optional<Actor> actorOptional = actorRepository.findById(id);
     if (actorOptional.isEmpty()) {
       throw new NotFoundException();
     }
