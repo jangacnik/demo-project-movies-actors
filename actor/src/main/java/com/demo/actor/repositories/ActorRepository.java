@@ -6,7 +6,7 @@ import java.util.Optional;
 import org.springframework.data.mongodb.repository.MongoRepository;
 
 public interface ActorRepository extends MongoRepository<Actor, String> {
-  Optional<List<Actor>> findAllByFirstNameOrLastNameOrderByLastName(
+  Optional<List<Actor>> findAllByFirstNameIgnoreCaseOrLastNameIgnoreCaseOrderByLastName(
       String firstName, String lastName);
 
   Optional<List<Actor>> findByIdIn(List<String> actorIds);

@@ -69,7 +69,7 @@ public class ActorService {
 
   public ActorListDto findByName(String name) throws NotFoundException {
     Optional<List<Actor>> actorList =
-        actorRepository.findAllByFirstNameOrLastNameOrderByLastName(name, name);
+        actorRepository.findAllByFirstNameIgnoreCaseOrLastNameIgnoreCaseOrderByLastName(name, name);
     if (actorList.isEmpty()) {
       throw new NotFoundException();
     }

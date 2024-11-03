@@ -46,7 +46,7 @@ public class MovieController {
     return ResponseEntity.ok(movieService.getById(id));
   }
 
-  @GetMapping("/find/{title}")
+  @GetMapping("/{title}/title")
   public Mono<MovieListDto> getByTitle(@PathVariable String title) throws NotFoundException {
     return Mono.just(movieService.findByTitle(title));
   }

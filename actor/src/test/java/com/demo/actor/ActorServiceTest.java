@@ -45,16 +45,16 @@ class ActorServiceTest {
 
   @Test
   void findByNameHappyPathTest() throws NotFoundException {
-    when(actorRepository.findAllByFirstNameOrLastNameOrderByLastName(any(), any()))
+    when(actorRepository.findAllByFirstNameIgnoreCaseOrLastNameIgnoreCaseOrderByLastName(any(), any()))
         .thenReturn(Optional.of(List.of(actorValid)));
     ActorListDto actorList = actorService.findByName("John");
     assertEquals(1, actorList.actorList().size());
-    verify(actorRepository, times(1)).findAllByFirstNameOrLastNameOrderByLastName(any(), any());
+    verify(actorRepository, times(1)).findAllByFirstNameIgnoreCaseOrLastNameIgnoreCaseOrderByLastName(any(), any());
   }
 
   @Test
   void findByNameNotFoundTest() {
-    when(actorRepository.findAllByFirstNameOrLastNameOrderByLastName(any(), any()))
+    when(actorRepository.findAllByFirstNameIgnoreCaseOrLastNameIgnoreCaseOrderByLastName(any(), any()))
         .thenReturn(Optional.empty());
     assertThrowsExactly(NotFoundException.class, () -> actorService.findByName("John"));
   }
