@@ -1,5 +1,6 @@
 package com.demo.actor.mappers;
 
+import com.demo.actor.dto.ActorDto;
 import com.demo.actor.dto.ActorFullDto;
 import com.demo.actor.dto.ActorShortDto;
 import com.demo.actor.models.Actor;
@@ -16,4 +17,7 @@ public interface ActorMapper {
   @Mapping(source = "actor", target = "actor")
   @Mapping(source = "movieShort", target = "movies")
   ActorFullDto toActorFullDto(Actor actor, List<MovieShort> movieShort);
+
+  @Mapping(source = "id", target = "id")
+  Actor toActor(ActorDto actorDto, String id);
 }

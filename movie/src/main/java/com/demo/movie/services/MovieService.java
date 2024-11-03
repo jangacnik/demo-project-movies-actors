@@ -99,13 +99,6 @@ public class MovieService {
   }
 
   private Movie convertToMovie(MovieDto movieDto, @Nullable String id) {
-    return new Movie(
-        movieDto.title(),
-        movieDto.year(),
-        movieDto.description(),
-        movieDto.actorIds(),
-        movieDto.coverImage(),
-        movieDto.images(),
-        id);
+    return movieMapper.toMovie(movieDto, id);
   }
 }

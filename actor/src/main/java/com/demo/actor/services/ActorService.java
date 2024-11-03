@@ -114,7 +114,6 @@ public class ActorService {
    * @return returns {@link Actor}
    */
   private Actor convertToActor(ActorDto actorDto, @Nullable String id) {
-    return new Actor(
-        actorDto.firstName(), actorDto.lastName(), actorDto.birthdate(), actorDto.movieIds(), id);
+    return actorMapper.toActor(actorDto, id);
   }
 }
