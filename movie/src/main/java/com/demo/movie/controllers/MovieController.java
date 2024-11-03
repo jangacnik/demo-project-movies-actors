@@ -42,8 +42,8 @@ public class MovieController {
   }
 
   @GetMapping("/{id}")
-  public Mono<Movie> getById(@PathVariable String id) throws NotFoundException {
-    return Mono.just(movieService.getById(id));
+  public ResponseEntity<Movie> getById(@PathVariable String id) throws NotFoundException {
+    return ResponseEntity.ok(movieService.getById(id));
   }
 
   @GetMapping("/find/{title}")
@@ -70,12 +70,12 @@ public class MovieController {
   }
 
   @GetMapping
-  public Mono<Page<MovieShortDto>> findAllByPage(
+  public ResponseEntity<Page<MovieShortDto>> findAllByPage(
       @RequestParam(defaultValue = "0") int page,
       @RequestParam(defaultValue = "10") int pageSize,
       @RequestParam(defaultValue = "ID") SortField sortField,
       @RequestParam(defaultValue = "DESC") Direction sortDirection) {
-    return Mono.just(movieService.findByPage(page, pageSize, sortDirection, sortField));
+    return ResponseEntity.ok(movieService.findByPage(page, pageSize, sortDirection, sortField));
   }
 
   @GetMapping("/{id}/full")
