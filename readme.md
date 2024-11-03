@@ -14,6 +14,7 @@ Use the given run configuration for each service:<br>
 <h4>How to package each project</h4>
 Use the given run configuration for each service:<br>
 [Movie Service Package Configuration](./.run/movie%20%5Bpackage%5D.run.xml)
+<br>
 
 [Actor Service Package Configuration](./.run/actor%20%5Bpackage%5D.run.xml)
 <hr>
