@@ -1,0 +1,11 @@
+<component name="ProjectRunConfigurationManager">
+  <configuration default="false" name="MovieApplication" type="SpringBootApplicationConfigurationType" factoryName="Spring Boot" nameIsGenerated="true">
+    <option name="ACTIVE_PROFILES" value="dev" />
+    <module name="movie" />
+    <option name="SPRING_BOOT_MAIN_CLASS" value="com.demo.movie.MovieApplication" />
+    <option name="VM_PARAMETERS" value="-Djasypt.encryptor.password=8w6Ib3tWc7" />
+    <method v="2">
+      <option name="Make" enabled="true" />
+    </method>
+  </configuration>
+</component>

@@ -1,0 +1,11 @@
+<component name="ProjectRunConfigurationManager">
+  <configuration default="false" name="ActorApplication" type="SpringBootApplicationConfigurationType" factoryName="Spring Boot" nameIsGenerated="true">
+    <option name="ACTIVE_PROFILES" value="dev" />
+    <module name="actor" />
+    <option name="SPRING_BOOT_MAIN_CLASS" value="com.demo.actor.ActorApplication" />
+    <option name="VM_PARAMETERS" value="-Djasypt.encryptor.password=OWh7du07EO" />
+    <method v="2">
+      <option name="Make" enabled="true" />
+    </method>
+  </configuration>
+</component>
