@@ -6,6 +6,7 @@ Demo project in Java 21 and Spring Boot 3
 Use the given run configuration for each service:<br>
 
 [Movie Service Local Run Configuration](./.run/MovieApplication.run.xml)
+<br>
 
 [Actor Service Local Run Configuration](./.run/ActorApplication.run.xml)
 <hr>
