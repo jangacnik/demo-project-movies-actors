@@ -20,6 +20,10 @@ Use the given run configuration for each service:<br>
 For deployment of both services with included MongoDB databases use:<br>
 
 [Docker Compose file](./compose.yaml)
+<br> with the following command (compose + build):
+```sh
+docker-compose up --build
+```
 
 Note:
 <ul>
