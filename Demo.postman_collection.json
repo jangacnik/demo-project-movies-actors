@@ -1,0 +1,885 @@
+{
+	"info": {
+		"_postman_id": "719a6a2f-758c-4000-ab27-7ce2e419a366",
+		"name": "Demo",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+		"_exporter_id": "11517358"
+	},
+	"item": [
+		{
+			"name": "Develop",
+			"item": [
+				{
+					"name": "Actor",
+					"item": [
+						{
+							"name": "Get actor",
+							"request": {
+								"method": "GET",
+								"header": [],
+								"url": {
+									"raw": "localhost:8071/actor/6726f4266b094134d212b04f",
+									"host": [
+										"localhost"
+									],
+									"port": "8071",
+									"path": [
+										"actor",
+										"6726f4266b094134d212b04f"
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "Delete actor by id",
+							"request": {
+								"method": "DELETE",
+								"header": [],
+								"url": {
+									"raw": "localhost:8071/actor/6726f5956b094134d212b058",
+									"host": [
+										"localhost"
+									],
+									"port": "8071",
+									"path": [
+										"actor",
+										"6726f5956b094134d212b058"
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "Get actor Full",
+							"request": {
+								"method": "GET",
+								"header": [],
+								"url": {
+									"raw": "localhost:8071/actor/6726f4266b094134d212b04f/full",
+									"host": [
+										"localhost"
+									],
+									"port": "8071",
+									"path": [
+										"actor",
+										"6726f4266b094134d212b04f",
+										"full"
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "Get Actors Pageable",
+							"request": {
+								"method": "GET",
+								"header": [],
+								"url": {
+									"raw": "localhost:8071/actor?page=1&pageSize=20&sortField=LAST_NAME&sortDirection=ASC",
+									"host": [
+										"localhost"
+									],
+									"port": "8071",
+									"path": [
+										"actor"
+									],
+									"query": [
+										{
+											"key": "page",
+											"value": "1"
+										},
+										{
+											"key": "pageSize",
+											"value": "20"
+										},
+										{
+											"key": "sortField",
+											"value": "LAST_NAME"
+										},
+										{
+											"key": "sortDirection",
+											"value": "ASC"
+										}
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "Update actor",
+							"request": {
+								"method": "PUT",
+								"header": [],
+								"body": {
+									"mode": "raw",
+									"raw": "{\n   \"firstName\": \"Jan\",\n   \"lastName\": \"Gacnik1999\",\n   \"birthdate\": \"1999-01-20\",\n   \"movieIds\": [\"movie1\", \"6725de2259f08245c1ddeb58\"]\n}",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "localhost:8071/actor/6726f4266b094134d212b04f",
+									"host": [
+										"localhost"
+									],
+									"port": "8071",
+									"path": [
+										"actor",
+										"6726f4266b094134d212b04f"
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "Insert Actor",
+							"request": {
+								"method": "POST",
+								"header": [],
+								"body": {
+									"mode": "raw",
+									"raw": "{\n   \"firstName\": \"John\",\n   \"lastName\": \"Gacnik\",\n   \"birthdate\": \"1999-01-20\",\n   \"movieIds\": [\"movie1\", \"6725de2259f08245c1ddeb58\"]\n}",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "localhost:8071/actor",
+									"host": [
+										"localhost"
+									],
+									"port": "8071",
+									"path": [
+										"actor"
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "Find by list of its",
+							"request": {
+								"method": "POST",
+								"header": [],
+								"body": {
+									"mode": "raw",
+									"raw": "{\n    \"actorIds\": [\n        \"6726f4266b094134d212b04f\"\n    ]\n}",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "localhost:8071/actor/list",
+									"host": [
+										"localhost"
+									],
+									"port": "8071",
+									"path": [
+										"actor",
+										"list"
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "Get request counters Copy",
+							"request": {
+								"method": "GET",
+								"header": [],
+								"url": {
+									"raw": "localhost:8071/counter",
+									"host": [
+										"localhost"
+									],
+									"port": "8071",
+									"path": [
+										"counter"
+									]
+								}
+							},
+							"response": []
+						}
+					]
+				},
+				{
+					"name": "Movie",
+					"item": [
+						{
+							"name": "Insert Movie",
+							"request": {
+								"method": "POST",
+								"header": [],
+								"body": {
+									"mode": "raw",
+									"raw": "{\n    \"title\": \"test\",\n    \"year\": \"1999\",\n    \"description\": \"test desc\",\n    \"actorIds\": [\n        \"actor1\",\n        \"actor2\"\n    ],\n    \"coverImage\": \"IMG_URI\",\n    \"images\": []\n}",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "localhost:8072/movie",
+									"host": [
+										"localhost"
+									],
+									"port": "8072",
+									"path": [
+										"movie"
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "Update movie",
+							"request": {
+								"method": "PUT",
+								"header": [],
+								"body": {
+									"mode": "raw",
+									"raw": "{\n    \"title\": \"Look back\",\n    \"year\": \"2024\",\n    \"description\": \"test desc\",\n    \"actorIds\": [\n        \"actor1\",\n        \"actor2\"\n    ],\n    \"coverImage\": \"IMG_URI\",\n    \"images\": []\n}",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "localhost:8072/movie/6726f43596763b04f6aa96ba",
+									"host": [
+										"localhost"
+									],
+									"port": "8072",
+									"path": [
+										"movie",
+										"6726f43596763b04f6aa96ba"
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "Get Movie by ID",
+							"request": {
+								"method": "GET",
+								"header": [],
+								"url": {
+									"raw": "localhost:8072/movie/6726f43596763b04f6aa96ba",
+									"host": [
+										"localhost"
+									],
+									"port": "8072",
+									"path": [
+										"movie",
+										"6726f43596763b04f6aa96ba"
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "Delete by id",
+							"request": {
+								"method": "DELETE",
+								"header": [],
+								"url": {
+									"raw": "localhost:8072/movie/6727082796763b04f6aa96c1",
+									"host": [
+										"localhost"
+									],
+									"port": "8072",
+									"path": [
+										"movie",
+										"6727082796763b04f6aa96c1"
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "Get Movie by title",
+							"request": {
+								"method": "GET",
+								"header": [],
+								"url": {
+									"raw": "localhost:8072/movie/Look/title",
+									"host": [
+										"localhost"
+									],
+									"port": "8072",
+									"path": [
+										"movie",
+										"Look",
+										"title"
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "Find by list of its",
+							"request": {
+								"method": "POST",
+								"header": [],
+								"body": {
+									"mode": "raw",
+									"raw": "{\n    \"movieIds\": [\n        \"6726f43596763b04f6aa96ba\"\n    ]\n}",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "127.0.0.1:8072/movie/list",
+									"host": [
+										"127",
+										"0",
+										"0",
+										"1"
+									],
+									"port": "8072",
+									"path": [
+										"movie",
+										"list"
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "Get movie Full",
+							"request": {
+								"method": "GET",
+								"header": [],
+								"url": {
+									"raw": "localhost:8072/movie/6726f43596763b04f6aa96ba/full",
+									"host": [
+										"localhost"
+									],
+									"port": "8072",
+									"path": [
+										"movie",
+										"6726f43596763b04f6aa96ba",
+										"full"
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "Pagination Movies",
+							"request": {
+								"method": "GET",
+								"header": [],
+								"url": {
+									"raw": "localhost:8072/movie?page=&pageSize=10&sortField=TITLE&sortDirection=ASC",
+									"host": [
+										"localhost"
+									],
+									"port": "8072",
+									"path": [
+										"movie"
+									],
+									"query": [
+										{
+											"key": "page",
+											"value": ""
+										},
+										{
+											"key": "pageSize",
+											"value": "10"
+										},
+										{
+											"key": "sortField",
+											"value": "TITLE"
+										},
+										{
+											"key": "sortDirection",
+											"value": "ASC"
+										}
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "Get request counters",
+							"request": {
+								"method": "GET",
+								"header": [],
+								"url": {
+									"raw": "localhost:8072/counter",
+									"host": [
+										"localhost"
+									],
+									"port": "8072",
+									"path": [
+										"counter"
+									]
+								}
+							},
+							"response": []
+						}
+					]
+				}
+			]
+		},
+		{
+			"name": "Docker",
+			"item": [
+				{
+					"name": "Actor",
+					"item": [
+						{
+							"name": "Get actor",
+							"request": {
+								"method": "GET",
+								"header": [],
+								"url": {
+									"raw": "localhost:8081/actor/6726f4266b094134d212b04f",
+									"host": [
+										"localhost"
+									],
+									"port": "8081",
+									"path": [
+										"actor",
+										"6726f4266b094134d212b04f"
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "Get actor Copy",
+							"request": {
+								"method": "GET",
+								"header": [],
+								"url": {
+									"raw": "localhost:8081/actor/6726f4266b094134d212b04f",
+									"host": [
+										"localhost"
+									],
+									"port": "8081",
+									"path": [
+										"actor",
+										"6726f4266b094134d212b04f"
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "Delete actor by id",
+							"request": {
+								"method": "DELETE",
+								"header": [],
+								"url": {
+									"raw": "localhost:8081/actor/6726f5956b094134d212b058",
+									"host": [
+										"localhost"
+									],
+									"port": "8081",
+									"path": [
+										"actor",
+										"6726f5956b094134d212b058"
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "Get actor Full",
+							"request": {
+								"method": "GET",
+								"header": [],
+								"url": {
+									"raw": "localhost:8081/actor/6726f4266b094134d212b04f/full",
+									"host": [
+										"localhost"
+									],
+									"port": "8081",
+									"path": [
+										"actor",
+										"6726f4266b094134d212b04f",
+										"full"
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "Get Actors Pageable",
+							"request": {
+								"method": "GET",
+								"header": [],
+								"url": {
+									"raw": "localhost:8081/actor?page=1&pageSize=20&sortField=LAST_NAME&sortDirection=ASC",
+									"host": [
+										"localhost"
+									],
+									"port": "8081",
+									"path": [
+										"actor"
+									],
+									"query": [
+										{
+											"key": "page",
+											"value": "1"
+										},
+										{
+											"key": "pageSize",
+											"value": "20"
+										},
+										{
+											"key": "sortField",
+											"value": "LAST_NAME"
+										},
+										{
+											"key": "sortDirection",
+											"value": "ASC"
+										}
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "Update actor",
+							"request": {
+								"method": "PUT",
+								"header": [],
+								"body": {
+									"mode": "raw",
+									"raw": "{\n   \"firstName\": \"Jan\",\n   \"lastName\": \"Gacnik1999\",\n   \"birthdate\": \"1999-01-20\",\n   \"movieIds\": [\"movie1\", \"6725de2259f08245c1ddeb58\"]\n}",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "localhost:8081/actor/6726f4266b094134d212b04f",
+									"host": [
+										"localhost"
+									],
+									"port": "8081",
+									"path": [
+										"actor",
+										"6726f4266b094134d212b04f"
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "Insert Actor",
+							"request": {
+								"method": "POST",
+								"header": [],
+								"body": {
+									"mode": "raw",
+									"raw": "{\n   \"firstName\": \"John\",\n   \"lastName\": \"Gacnik\",\n   \"birthdate\": \"1999-01-20\",\n   \"movieIds\": [\"movie1\", \"6725de2259f08245c1ddeb58\"]\n}",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "localhost:8081/actor",
+									"host": [
+										"localhost"
+									],
+									"port": "8081",
+									"path": [
+										"actor"
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "Find by list of its",
+							"request": {
+								"method": "POST",
+								"header": [],
+								"body": {
+									"mode": "raw",
+									"raw": "{\n    \"actorIds\": [\n        \"6726f4266b094134d212b04f\"\n    ]\n}",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "localhost:8081/actor/list",
+									"host": [
+										"localhost"
+									],
+									"port": "8081",
+									"path": [
+										"actor",
+										"list"
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "Get request counters Copy",
+							"request": {
+								"method": "GET",
+								"header": [],
+								"url": {
+									"raw": "localhost:8081/counter",
+									"host": [
+										"localhost"
+									],
+									"port": "8081",
+									"path": [
+										"counter"
+									]
+								}
+							},
+							"response": []
+						}
+					]
+				},
+				{
+					"name": "Movie",
+					"item": [
+						{
+							"name": "Insert Movie",
+							"request": {
+								"method": "POST",
+								"header": [],
+								"body": {
+									"mode": "raw",
+									"raw": "{\n    \"title\": \"Look back\",\n    \"year\": \"2024\",\n    \"description\": \"test desc\",\n    \"actorIds\": [\n        \"actor1\",\n        \"actor2\"\n    ],\n    \"coverImage\": \"IMG_URI\",\n    \"images\": []\n}",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "localhost:8082/movie",
+									"host": [
+										"localhost"
+									],
+									"port": "8082",
+									"path": [
+										"movie"
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "Update movie",
+							"request": {
+								"method": "PUT",
+								"header": [],
+								"body": {
+									"mode": "raw",
+									"raw": "{\n    \"title\": \"Look back\",\n    \"year\": \"2024\",\n    \"description\": \"test desc\",\n    \"actorIds\": [\n        \"actor1\",\n        \"actor2\"\n    ],\n    \"coverImage\": \"IMG_URI\",\n    \"images\": []\n}",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "localhost:8082/movie/6726f43596763b04f6aa96ba",
+									"host": [
+										"localhost"
+									],
+									"port": "8082",
+									"path": [
+										"movie",
+										"6726f43596763b04f6aa96ba"
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "Get Movie by ID",
+							"request": {
+								"method": "GET",
+								"header": [],
+								"url": {
+									"raw": "localhost:8082/movie/6726f43596763b04f6aa96ba",
+									"host": [
+										"localhost"
+									],
+									"port": "8082",
+									"path": [
+										"movie",
+										"6726f43596763b04f6aa96ba"
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "Delete by id",
+							"request": {
+								"method": "DELETE",
+								"header": [],
+								"url": {
+									"raw": "localhost:8082/movie/6727082796763b04f6aa96c1",
+									"host": [
+										"localhost"
+									],
+									"port": "8082",
+									"path": [
+										"movie",
+										"6727082796763b04f6aa96c1"
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "Get Movie by title",
+							"request": {
+								"method": "GET",
+								"header": [],
+								"url": {
+									"raw": "localhost:8082/movie/Look/title",
+									"host": [
+										"localhost"
+									],
+									"port": "8082",
+									"path": [
+										"movie",
+										"Look",
+										"title"
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "Find by list of its",
+							"request": {
+								"method": "POST",
+								"header": [],
+								"body": {
+									"mode": "raw",
+									"raw": "{\n    \"movieIds\": [\n        \"6726f43596763b04f6aa96ba\"\n    ]\n}",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "127.0.0.1:8082/movie/list",
+									"host": [
+										"127",
+										"0",
+										"0",
+										"1"
+									],
+									"port": "8082",
+									"path": [
+										"movie",
+										"list"
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "Get movie Full",
+							"request": {
+								"method": "GET",
+								"header": [],
+								"url": {
+									"raw": "localhost:8082/movie/6726f43596763b04f6aa96ba/full",
+									"host": [
+										"localhost"
+									],
+									"port": "8082",
+									"path": [
+										"movie",
+										"6726f43596763b04f6aa96ba",
+										"full"
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "Pagination Movies",
+							"request": {
+								"method": "GET",
+								"header": [],
+								"url": {
+									"raw": "localhost:8082/movie?page=&pageSize=10&sortField=TITLE&sortDirection=ASC",
+									"host": [
+										"localhost"
+									],
+									"port": "8082",
+									"path": [
+										"movie"
+									],
+									"query": [
+										{
+											"key": "page",
+											"value": ""
+										},
+										{
+											"key": "pageSize",
+											"value": "10"
+										},
+										{
+											"key": "sortField",
+											"value": "TITLE"
+										},
+										{
+											"key": "sortDirection",
+											"value": "ASC"
+										}
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "Get request counters",
+							"request": {
+								"method": "GET",
+								"header": [],
+								"url": {
+									"raw": "localhost:8082/counter",
+									"host": [
+										"localhost"
+									],
+									"port": "8082",
+									"path": [
+										"counter"
+									]
+								}
+							},
+							"response": []
+						}
+					]
+				}
+			]
+		}
+	]
+}

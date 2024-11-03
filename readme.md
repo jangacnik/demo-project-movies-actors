@@ -42,4 +42,12 @@ Note:
 </li>
 <li>Configure test DB for better test coverage
 </li>
+<li>Add filter function for filtering movies/actors
+</li>
 </ul>
+<hr>
+<h4>Testing of endpoints with Postman</h4>
+
+[Postman collection](./Demo.postman_collection.json)
+includes http request for testing both services for develop and docker profile
+
